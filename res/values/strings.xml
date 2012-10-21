@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, AndroidOpenHouseFeedbackActivity!</string>
+    <string name="app_name">AndroidOpenHouseFeedback</string>
+    <string name="strSubmit">Submit</string>
+    <string name="strLocationLabel">Location</string>
+    <string name="strSearch">Search</string>
+    <string name="strOhLabelSearch">Find Open House</string>
+    <string name="strOhNew">New Open House</string>
+    <string name="strViewLabel">View</string>
+    <string name="strSave">Save</string>
+
+</resources>

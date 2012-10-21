@@ -1,0 +1,5 @@
+http://www.edumobile.org/android/android-programming-tutorials/search-interface/
+
+http://developer.android.com/guide/topics/search/search-dialog.html
+
+http://answers.oreilly.com/topic/1955-how-to-use-full-text-search-in-sqlite/
