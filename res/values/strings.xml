@@ -10,5 +10,7 @@
     <string name="strOhNew">New Open House</string>
     <string name="strViewLabel">View</string>
     <string name="strSave">Save</string>
+    <string name="strFeedback">Feedback</string>
+    <string name="strQuestion">Questions</string>
 
 </resources>

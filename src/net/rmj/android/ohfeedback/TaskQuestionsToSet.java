@@ -8,9 +8,7 @@ import net.rmj.android.ohfeedback.dataaccess.QuestionsFeedbackDao;
 import net.rmj.android.ohfeedback.model.Location;
 import net.rmj.android.ohfeedback.model.Questionaire;
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.os.AsyncTask;
+import android.app.ListActivity;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -20,12 +18,12 @@ import android.widget.Toast;
  * @author YRJ0002
  *
  */
-public class TaskReadLocationQuestions extends OhAsyncTaskBase {
+public class TaskQuestionsToSet extends OhAsyncTaskBase {
 	
 	
 	private ArrayList<Questionaire> questions;
 	
-	public TaskReadLocationQuestions(Activity activity) {
+	public TaskQuestionsToSet(Activity activity) {
 		//this.activity = activity;
 		//this.context = this.activity;
 		//dialog = new ProgressDialog(context);
@@ -47,11 +45,15 @@ public class TaskReadLocationQuestions extends OhAsyncTaskBase {
 		} */
 		
 		String strResult = "";
-		long locId = Long.parseLong(params[0]);
+		if (!params[0].equals(OhConstants.ACTION_READALL)) {
+			Log.i(OhConstants.OH_TAG, "Unknown Action " );
+			return "Unknown Action";
+		}
+		//long locId = Long.parseLsong(params[0]);
 		QuestionsFeedbackDao dao = new QuestionsFeedbackDao(context);
 		try {
 			dao.openDatabase();
-			questions = dao.getLocationQuestions(locId);
+			questions = dao.getAllQuestions();
 			if (questions==null || questions.isEmpty()) {
 				strResult = "No questions found.";
 				Log.i(OhConstants.OH_TAG, "No questions found, there is a problem.");
@@ -71,6 +73,16 @@ public class TaskReadLocationQuestions extends OhAsyncTaskBase {
 		
 	}
 	
+	private List<Location> doSearch(String query) {
+		
+		List<Location> results = null;
+		LocationDao dao = new LocationDao(context);
+		dao.openDatabase();
+		results = dao.findLocations(query);
+		
+		return results;
+		
+	}
 	
 	/**
 	 * Post execute actions
@@ -79,13 +91,14 @@ public class TaskReadLocationQuestions extends OhAsyncTaskBase {
 		super.onPostExecute(result);
 		
 		if (result.equalsIgnoreCase(OhConstants.SUCCESS)) {
+			
 			ListView fListView = (ListView)activity.findViewById(R.id.locationQuestions);
-	        
-	        FeedbackAdapter fAdapter = new FeedbackAdapter(context,R.layout.questions_list,questions);
+	        //sListView fListView = (ListView)activity.findViewById(R.id.locationQuestions); 
+	        QuestionAdapter fAdapter = new QuestionAdapter(context,R.layout.questions_list,questions);
 	        fListView.setAdapter(fAdapter);
 	        
-	        //if (dialog.isShowing()) dialog.dismiss();
-	        //Toast.makeText(context, "Please answer questions.", Toast.LENGTH_SHORT);
+	        if (dialog.isShowing()) dialog.dismiss();
+	        Toast.makeText(context, "Please answer questions.", Toast.LENGTH_SHORT);
 		
 		} else {
 		

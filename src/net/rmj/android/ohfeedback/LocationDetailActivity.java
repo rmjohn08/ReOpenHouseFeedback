@@ -3,6 +3,7 @@ package net.rmj.android.ohfeedback;
 import net.rmj.android.ohfeedback.dataaccess.LocationDao;
 import net.rmj.android.ohfeedback.model.Location;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -37,6 +38,30 @@ public class LocationDetailActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				saveLocationDetails();
+			}
+			 
+		 });
+		 Button btnFeedback = (Button)this.findViewById(R.id.btnFeedback);
+		 btnFeedback.setOnClickListener( new OnClickListener() {
+
+			@Override
+			public void onClick(View vw) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(vw.getContext(),OpenHouseLocationFeedbackActivity.class);
+				intent.putExtra(OhConstants.LOCATION_ID_NAME, locationId);
+    			vw.getContext().startActivity(intent);
+			}
+			 
+		 });
+		 Button btnSetQuestion = (Button)this.findViewById(R.id.btnSetQuestions);
+		 btnSetQuestion.setOnClickListener( new OnClickListener() {
+
+			@Override
+			public void onClick(View vw) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(vw.getContext(),SetLocationQuestionsActivity.class);
+				intent.putExtra(OhConstants.LOCATION_ID_NAME, locationId);
+    			vw.getContext().startActivity(intent);
 			}
 			 
 		 });

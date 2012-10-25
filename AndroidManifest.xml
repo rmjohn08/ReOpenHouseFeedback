@@ -25,6 +25,8 @@
         </activity>
         <activity android:name=".OpenHouseLocationFeedbackActivity"></activity>
         <activity android:name=".LocationDetailActivity"></activity>
+        <activity android:name=".SetLocationQuestionsActivity"></activity>
+        
          
          <activity android:name=".OpenHouseSearch" android:launchMode="singleTop">
              <intent-filter>

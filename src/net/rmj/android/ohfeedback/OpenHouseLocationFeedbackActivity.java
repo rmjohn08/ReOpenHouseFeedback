@@ -1,10 +1,10 @@
 package net.rmj.android.ohfeedback;
 
-import android.app.ListActivity;
+import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ListView;
 
-public class OpenHouseLocationFeedbackActivity extends ListActivity {
+public class OpenHouseLocationFeedbackActivity extends Activity {
 	
 	ListView fListView;
 	/** Called when the activity is first created. */
@@ -14,7 +14,7 @@ public class OpenHouseLocationFeedbackActivity extends ListActivity {
     	setContentView(R.layout.feedback);
         fListView = (ListView)this.findViewById(R.id.myFeedbackQuestions);
         
-        long locationId = 1;
+        long locationId = getIntent().getLongExtra(OhConstants.LOCATION_ID_NAME, 0);
 		TaskReadLocationQuestions task = new TaskReadLocationQuestions(this);
 		task.execute(new String[]{String.valueOf(locationId)});
 		

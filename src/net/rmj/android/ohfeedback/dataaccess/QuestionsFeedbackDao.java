@@ -31,8 +31,8 @@ public class QuestionsFeedbackDao extends OpenHouseFeedbackDao {
 	 * list all questions
 	 * @return
 	 */
-	public List<Questionaire> getAllQuestions() {
-		List<Questionaire> list = new ArrayList<Questionaire>();
+	public ArrayList<Questionaire> getAllQuestions() {
+		ArrayList<Questionaire> list = new ArrayList<Questionaire>();
 		Cursor cursor = db.query(QUESTION_TABLE, questionColumns, null, null, null, null, null);
 		cursor.moveToFirst();
 		while(!cursor.isAfterLast()) {
@@ -186,7 +186,7 @@ public class QuestionsFeedbackDao extends OpenHouseFeedbackDao {
 	 */
 	public ArrayList<Questionaire> getLocationQuestions(long locationId) {
 		ArrayList<Questionaire> list = new ArrayList<Questionaire>();
-		String[] fields = {this.LOC_QN,this.LOC_QN_LOC};
+		//String[] fields = {this.LOC_QN,this.LOC_QN_LOC};
 		String sql = "select q._id, q.question, q.qn_type from " + 
 				this.QUESTION_TABLE + " q inner join " + 
 				this.QUESTION_LOC_TABLE + " ql on q._id = ql.qn_id where ql.loc_id = ? ";
