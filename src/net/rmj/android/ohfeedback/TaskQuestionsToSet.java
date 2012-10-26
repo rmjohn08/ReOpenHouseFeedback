@@ -23,6 +23,14 @@ public class TaskQuestionsToSet extends OhAsyncTaskBase {
 	
 	private ArrayList<Questionaire> questions;
 	
+	public ArrayList<Questionaire> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(ArrayList<Questionaire> questions) {
+		this.questions = questions;
+	}
+
 	public TaskQuestionsToSet(Activity activity) {
 		//this.activity = activity;
 		//this.context = this.activity;
@@ -45,11 +53,49 @@ public class TaskQuestionsToSet extends OhAsyncTaskBase {
 		} */
 		
 		String strResult = "";
-		if (!params[0].equals(OhConstants.ACTION_READALL)) {
-			Log.i(OhConstants.OH_TAG, "Unknown Action " );
-			return "Unknown Action";
-		}
+		if (params[0].equals(OhConstants.ACTION_READALL)) {
+			long locId = Long.parseLong(params[1]);
+			return readQuestions(locId);
+		} else if (params[0].equals(OhConstants.ACTION_SAVE)) {
+			return saveLocationQuestions(Long.parseLong(params[1]));
+		} else 
+			return params[0]+" action not implemented";
+		
+		
+	}
+	
+	protected String readQuestions(long locId) {
+		//Log.i(OhConstants.OH_TAG, "Unknown Action " );
+		//return "Unknown Action";
 		//long locId = Long.parseLsong(params[0]);
+		String strResult="";
+		QuestionsFeedbackDao dao = new QuestionsFeedbackDao(context);
+		try {
+			dao.openDatabase();
+			questions = dao.getLocationQuestions(locId); //.getAllQuestions();
+			if (questions==null || questions.isEmpty()) {
+				strResult = "No questions found.";
+				Log.i(OhConstants.OH_TAG, "No questions found, there is a problem.");
+			}
+		
+		}  catch(Exception ex) {
+			Log.e(OhConstants.OH_TAG, "Error testing dao");
+			ex.printStackTrace();
+			strResult = OhConstants.EXCEPTION;
+		} finally {
+			dao.closeDatabase();
+		}
+		
+		if (strResult.equals("")) strResult = OhConstants.SUCCESS;
+		// TODO Auto-generated method stub
+		return strResult;
+	}
+	
+	protected String readAllQuestions() {
+		//Log.i(OhConstants.OH_TAG, "Unknown Action " );
+		//return "Unknown Action";
+		//long locId = Long.parseLsong(params[0]);
+		String strResult="";
 		QuestionsFeedbackDao dao = new QuestionsFeedbackDao(context);
 		try {
 			dao.openDatabase();
@@ -70,7 +116,29 @@ public class TaskQuestionsToSet extends OhAsyncTaskBase {
 		if (strResult.equals("")) strResult = OhConstants.SUCCESS;
 		// TODO Auto-generated method stub
 		return strResult;
+	}
+	
+	/*
+	 * saves the questions for the location
+	 */
+	protected String saveLocationQuestions(long locId) {
+//		/long locId = Long.parseLong(params[1]);
+		String strResult="";
+		QuestionsFeedbackDao dao = new QuestionsFeedbackDao(context);
+		try {
+			dao.openDatabase();
+			dao.saveLocationQuestions(locId, questions);
+			strResult = OhConstants.SUCCESS;
+			
 		
+		}  catch(Exception ex) {
+			Log.e(OhConstants.OH_TAG, "Error testing dao");
+			ex.printStackTrace();
+			strResult = OhConstants.EXCEPTION;
+		} finally {
+			dao.closeDatabase();
+		}
+		return strResult; //(strResult.equals(OhConstants.SUCCESS) ? OhConstants.ACTION_SAVE : OhConstants.FAILED );
 	}
 	
 	private List<Location> doSearch(String query) {
@@ -97,13 +165,14 @@ public class TaskQuestionsToSet extends OhAsyncTaskBase {
 	        QuestionAdapter fAdapter = new QuestionAdapter(context,R.layout.questions_list,questions);
 	        fListView.setAdapter(fAdapter);
 	        
-	        if (dialog.isShowing()) dialog.dismiss();
+	        //if (dialog.isShowing()) dialog.dismiss();
 	        Toast.makeText(context, "Please answer questions.", Toast.LENGTH_SHORT);
 		
 		} else {
 		
-			Toast.makeText(context, result, Toast.LENGTH_LONG);
-		
+			//Toast.makeText(context, result, Toast.LENGTH_LONG);
+			Log.i(OhConstants.OH_TAG, result);
+			
 		}
 		
 	}

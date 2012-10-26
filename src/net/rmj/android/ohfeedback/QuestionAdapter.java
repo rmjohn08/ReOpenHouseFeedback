@@ -65,7 +65,8 @@ public class QuestionAdapter extends ArrayAdapter<Questionaire>{
         {   // Find our widgets and populate them with the Team data.
             TextView myQuestion = (TextView) row.findViewById(R.id.questionText);
             CheckBox cb = (CheckBox)row.findViewById(R.id.chkQuestion);
-            cb.setTag(item.getQuestionId());
+            cb.setTag(new Long(item.getQuestionId()));
+            cb.setChecked(item.isSelected());
             
             
             if(myQuestion != null)

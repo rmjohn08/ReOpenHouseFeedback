@@ -7,8 +7,16 @@ public class Questionaire {
 	//these are used to responses to questions
 	private int rating;
 	private String text;
+	private boolean selected;
 	
 	
+	
+	public boolean isSelected() {
+		return selected;
+	}
+	public void setSelected(boolean selected) {
+		this.selected = selected;
+	}
 	public String getText() {
 		return text;
 	}

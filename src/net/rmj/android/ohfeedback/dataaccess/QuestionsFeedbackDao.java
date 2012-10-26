@@ -117,6 +117,14 @@ public class QuestionsFeedbackDao extends OpenHouseFeedbackDao {
 		q.setQuestion(cursor.getString(cursor.getColumnIndex(QUESTION_TEXT)));
 		q.setType(cursor.getString(cursor.getColumnIndex(QUESTION_TYPE)));
 		
+		try {	
+			long lng = cursor.getLong(cursor.getColumnIndex(LOC_QN));
+			q.setSelected((lng>0));
+		} catch (Exception ex) {
+			q.setSelected(false);
+		}
+		
+		
 		return q;
 		
 	}
@@ -183,13 +191,15 @@ public class QuestionsFeedbackDao extends OpenHouseFeedbackDao {
 	
 	/**
 	 * to do method that retrieve questions_location, insert new question_locations, delete questions_locations
+	 * 
+	 * select q.*, ql.* from questionaire q left join location_question ql on ql.qn_id = q._id and (ql.loc_id = 2 or ql.qn_id IS null ) 
 	 */
 	public ArrayList<Questionaire> getLocationQuestions(long locationId) {
 		ArrayList<Questionaire> list = new ArrayList<Questionaire>();
 		//String[] fields = {this.LOC_QN,this.LOC_QN_LOC};
-		String sql = "select q._id, q.question, q.qn_type from " + 
-				this.QUESTION_TABLE + " q inner join " + 
-				this.QUESTION_LOC_TABLE + " ql on q._id = ql.qn_id where ql.loc_id = ? ";
+		String sql = "select q._id, q.question, q.qn_type, ql.qn_id from " + 
+				this.QUESTION_TABLE + " q LEFT JOIN " + 
+				this.QUESTION_LOC_TABLE + " ql ON q._id = ql.qn_id and (ql.loc_id = ? or ql.qn_id IS null ) ";
 		String[] args = {String.valueOf(locationId)};
 		Cursor cursor = db.rawQuery(sql,args);
 		
