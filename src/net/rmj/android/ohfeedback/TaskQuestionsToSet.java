@@ -77,6 +77,8 @@ public class TaskQuestionsToSet extends OhAsyncTaskBase {
 				strResult = "No questions found.";
 				Log.i(OhConstants.OH_TAG, "No questions found, there is a problem.");
 			}
+			
+			
 		
 		}  catch(Exception ex) {
 			Log.e(OhConstants.OH_TAG, "Error testing dao");

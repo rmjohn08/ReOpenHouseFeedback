@@ -8,12 +8,11 @@
     
     <ListView
        android:id="@+id/myFeedbackQuestions"
-       android:layout_width="wrap_content"
-       android:layout_height="wrap_content"
+       android:layout_width="fill_parent"
+       android:layout_height="fill_parent"
        android:layout_alignParentRight="true"
        android:layout_alignParentTop="true"
-       android:layout_above="@+id/bbar"
-       android:clickable="true" >
+       android:layout_above="@+id/bbar">
    </ListView>
    
     <RelativeLayout
@@ -22,7 +21,7 @@
        android:layout_alignParentBottom="true"
        android:id="@+id/bbar">
        
-        <Button android:id="@+id/btnSubmit"
+        <Button android:id="@+id/btnSubmitFeedback"
         android:layout_height="wrap_content"
         android:layout_width="wrap_content"
         android:text="@string/strSubmit"

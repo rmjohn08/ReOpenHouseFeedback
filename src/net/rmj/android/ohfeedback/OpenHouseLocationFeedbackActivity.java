@@ -12,7 +12,7 @@ public class OpenHouseLocationFeedbackActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
     	super.onCreate(savedInstanceState);
     	setContentView(R.layout.feedback);
-        fListView = (ListView)this.findViewById(R.id.myFeedbackQuestions);
+        //fListView = (ListView)this.findViewById(R.id.myFeedbackQuestions);
         
         long locationId = getIntent().getLongExtra(OhConstants.LOCATION_ID_NAME, 0);
 		TaskReadLocationQuestions task = new TaskReadLocationQuestions(this);

@@ -190,6 +190,8 @@ public class QuestionsFeedbackDao extends OpenHouseFeedbackDao {
 	
 	
 	/**
+	 * select all possible questions for locations and if there is any 
+	 * already selected. 
 	 * to do method that retrieve questions_location, insert new question_locations, delete questions_locations
 	 * 
 	 * select q.*, ql.* from questionaire q left join location_question ql on ql.qn_id = q._id and (ql.loc_id = 2 or ql.qn_id IS null ) 
@@ -200,6 +202,32 @@ public class QuestionsFeedbackDao extends OpenHouseFeedbackDao {
 		String sql = "select q._id, q.question, q.qn_type, ql.qn_id from " + 
 				this.QUESTION_TABLE + " q LEFT JOIN " + 
 				this.QUESTION_LOC_TABLE + " ql ON q._id = ql.qn_id and (ql.loc_id = ? or ql.qn_id IS null ) ";
+		String[] args = {String.valueOf(locationId)};
+		Cursor cursor = db.rawQuery(sql,args);
+		
+		//rawQuery(sql, selectionArgs).query(QUESTION_LOC_TABLE, fields, null, null, null, null, null);
+		cursor.moveToFirst();
+		while(!cursor.isAfterLast()) {
+			list.add(buildQuestion(cursor));
+			cursor.moveToNext();
+		}
+		
+		return list;
+		
+	}
+	
+	/**
+	 * gets only the questions selected to show for the feedback
+	 * @param locationId
+	 * @return
+	 */
+	public ArrayList<Questionaire> getLocationFeedbackQuestions(long locationId) {
+		ArrayList<Questionaire> list = new ArrayList<Questionaire>();
+		//String[] fields = {this.LOC_QN,this.LOC_QN_LOC};
+		String sql = "select q._id, q.question, q.qn_type, ql.qn_id from " + 
+				this.QUESTION_TABLE + " q INNER JOIN " + 
+				this.QUESTION_LOC_TABLE + " ql ON q._id = ql.qn_id " +
+				"WHERE ql.loc_id = ? ";
 		String[] args = {String.valueOf(locationId)};
 		Cursor cursor = db.rawQuery(sql,args);
 		

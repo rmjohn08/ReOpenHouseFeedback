@@ -19,7 +19,7 @@ public class FeedbackDao extends OpenHouseFeedbackDao {
 		
 	}
 	
-	private void setAllColumns() {
+	protected void setAllColumns() {
 		allColumns = new ArrayList<String>();
 		allColumns.add("_id");
 		allColumns.add("qn_id");
@@ -43,7 +43,7 @@ public class FeedbackDao extends OpenHouseFeedbackDao {
 	 * @param fe
 	 * @param setPk
 	 */
-	public void setFeedbackContentValues(ContentValues values, Feedback fe, boolean setPk) {
+	protected void setFeedbackContentValues(ContentValues values, Feedback fe, boolean setPk) {
 		int idx=0;
 		if (setPk) 
 			values.put(allColumns.get(idx++), fe.getFeedbackId());

@@ -1,16 +1,10 @@
 package net.rmj.android.ohfeedback;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import net.rmj.android.ohfeedback.dataaccess.LocationDao;
 import net.rmj.android.ohfeedback.dataaccess.QuestionsFeedbackDao;
-import net.rmj.android.ohfeedback.model.Location;
 import net.rmj.android.ohfeedback.model.Questionaire;
 import android.app.Activity;
-import android.app.ProgressDialog;
-import android.content.Context;
-import android.os.AsyncTask;
 import android.util.Log;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -51,7 +45,7 @@ public class TaskReadLocationQuestions extends OhAsyncTaskBase {
 		QuestionsFeedbackDao dao = new QuestionsFeedbackDao(context);
 		try {
 			dao.openDatabase();
-			questions = dao.getLocationQuestions(locId);
+			questions = dao.getLocationFeedbackQuestions(locId);
 			if (questions==null || questions.isEmpty()) {
 				strResult = "No questions found.";
 				Log.i(OhConstants.OH_TAG, "No questions found, there is a problem.");
@@ -79,9 +73,12 @@ public class TaskReadLocationQuestions extends OhAsyncTaskBase {
 		super.onPostExecute(result);
 		
 		if (result.equalsIgnoreCase(OhConstants.SUCCESS)) {
-			ListView fListView = (ListView)activity.findViewById(R.id.locationQuestions);
+			//ListView fListView = (ListView)activity.findViewById(R.id.locationQuestions);
+			ListView fListView = (ListView)activity.findViewById(R.id.myFeedbackQuestions);
+			//ScrollView fListView = (ScrollView)activity.findViewById(R.id.myFeedbackQuestions);
 	        
-	        FeedbackAdapter fAdapter = new FeedbackAdapter(context,R.layout.questions_list,questions);
+	        //FeedbackAdapter fAdapter = new FeedbackAdapter(context,R.layout.questions_list,questions);
+			FeedbackAdapter fAdapter = new FeedbackAdapter(context,R.layout.feedback_list,questions);
 	        fListView.setAdapter(fAdapter);
 	        
 	        //if (dialog.isShowing()) dialog.dismiss();

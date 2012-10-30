@@ -5,7 +5,7 @@ public class Questionaire {
 	private long questionId;
 	private String type;
 	//these are used to responses to questions
-	private int rating;
+	private float rating;
 	private String text;
 	private boolean selected;
 	
@@ -48,10 +48,10 @@ public class Questionaire {
 	public void setQuestion(String question) {
 		this.question = question;
 	}
-	public int getRating() {
+	public float getRating() {
 		return rating;
 	}
-	public void setRating(int rating) {
+	public void setRating(float rating) {
 		this.rating = rating;
 	}
 	

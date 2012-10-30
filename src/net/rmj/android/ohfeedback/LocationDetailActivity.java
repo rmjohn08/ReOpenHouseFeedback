@@ -47,7 +47,7 @@ public class LocationDetailActivity extends Activity {
 			@Override
 			public void onClick(View vw) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(vw.getContext(),OpenHouseLocationFeedbackActivity.class);
+				Intent intent = new Intent(vw.getContext(),OpenHouseLocationFeedback.class);
 				intent.putExtra(OhConstants.LOCATION_ID_NAME, locationId);
     			vw.getContext().startActivity(intent);
 			}

@@ -23,7 +23,7 @@
                 android:value=".OpenHouseSearch" />
             
         </activity>
-        <activity android:name=".OpenHouseLocationFeedbackActivity"></activity>
+        <activity android:name=".OpenHouseLocationFeedback"></activity>
         <activity android:name=".LocationDetailActivity"></activity>
         <activity android:name=".SetLocationQuestionsActivity"></activity>
         

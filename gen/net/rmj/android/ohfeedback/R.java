@@ -24,7 +24,7 @@ public final class R {
         public static final int btnSaveLocDetail=0x7f060012;
         public static final int btnSetQuestions=0x7f06000a;
         public static final int btnSetting=0x7f060016;
-        public static final int btnSubmit=0x7f060003;
+        public static final int btnSubmitFeedback=0x7f060003;
         public static final int btnSubmitQuestions=0x7f06001a;
         public static final int button1=0x7f060021;
         public static final int button3=0x7f06000b;
