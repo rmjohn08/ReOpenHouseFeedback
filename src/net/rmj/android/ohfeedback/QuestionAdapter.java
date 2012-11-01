@@ -71,19 +71,7 @@ public class QuestionAdapter extends ArrayAdapter<Questionaire>{
             
             if(myQuestion != null)
                 myQuestion.setText(item.getQuestion());
-            
-                		//rating).setText("Wins: " + String.valueOf(item.getTeamWins()));
-            cb.setOnCheckedChangeListener(new OnCheckedChangeListener() {
-
-			@Override
-			public void onCheckedChanged(CompoundButton arg0, boolean arg1) {
-				// TODO Auto-generated method stub
-						
-			}
-            	
-            	
-            	
-            });
+           
         }
         return row;
     }

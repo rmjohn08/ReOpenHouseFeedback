@@ -25,15 +25,15 @@ public class SetLocationQuestionsActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.questions);
-		
 		locationId = getIntent().getLongExtra(OhConstants.LOCATION_ID_NAME, 0);
 		
-		TaskQuestionsToSet task = new TaskQuestionsToSet(this);
+		//TaskQuestionsToSet task = new TaskQuestionsToSet(this);
+		//task.execute(new String[]{OhConstants.ACTION_READALL,String.valueOf(locationId)});
+		ReadQuestionsTask task = new ReadQuestionsTask(this);
 		task.execute(new String[]{OhConstants.ACTION_READALL,String.valueOf(locationId)});
 		
 		Button saveQuestions = (Button)this.findViewById(R.id.btnSubmitQuestions);
 		saveQuestions.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
@@ -49,6 +49,12 @@ public class SetLocationQuestionsActivity extends Activity {
 		this.finish();
 	}
 	
+	
+	/**
+	 * this function is used to set handle the click on the checkbox button. 
+	 * this is set on the XML layout file -- one technique 
+	 * @param vw
+	 */
 	public void chkButtonClickHandler(View vw) {
 		          
 		        //reset all the listView items background colours 
@@ -63,25 +69,21 @@ public class SetLocationQuestionsActivity extends Activity {
 		        
 		        //get the row the clicked button is in
 		        LinearLayout vwParentRow = (LinearLayout)vw.getParent();
-		         
-		        TextView child = (TextView)vwParentRow.getChildAt(0);
+		        
 		        CheckBox chkChild = (CheckBox)vwParentRow.getChildAt(1);
 		        Long value = (Long)chkChild.getTag();
 		        if (chkChild.isChecked() ) {
 		        	if (value !=null || !selQuestions.contains(value)) {
 		        		selQuestions.add(value);
-		        		Toast.makeText(this, "YOU clicked on "+value.toString(),Toast.LENGTH_SHORT );
+		        		Log.i(OhConstants.OH_TAG,"YOU clicked on "+value.toString());
+		        		
 		        	}
 		        	
+		        } else if (selQuestions.contains(value)) {
+		        	//remove from the list 
+		        	selQuestions.remove(value);
 		        }
 		        
-		        //btnChild.setText(child.getText());
-		        //btnChild.setText("I've been clicked!");
-		        
-		        //int c = Color.CYAN;
-		        
-		        //vwParentRow.setBackgroundColor(c); 
-		        //vwParentRow.refreshDrawableState();       
 
 	}
 	
@@ -91,12 +93,51 @@ public class SetLocationQuestionsActivity extends Activity {
 	
 	private boolean saveQuestionsChoices() {
 		
-		
+		//first 
 		SaveQuestionsTask task = new SaveQuestionsTask(this);
 		//task.setQuestions(questions);
 		task.execute(new String[]{OhConstants.ACTION_SAVE, String.valueOf(locationId)});
 		return true;
 	}
+	
+	class ReadQuestionsTask extends TaskQuestionsToSet {
+		public ReadQuestionsTask(Activity ac) {
+			super(ac);
+		}
+		
+		
+		protected String doInBackground(String... params) {
+			
+			String result = super.doInBackground(params);
+			
+			return result;
+			
+		}
+		
+		@Override
+		protected void onPostExecute(String result) {
+			
+			if (result.equalsIgnoreCase(OhConstants.SUCCESS)) {
+				//at this point should get the list from DB
+				super.onPostExecute(result);
+				ArrayList<Questionaire> questions = this.getQuestions();
+				
+				if (questions==null) return ;
+				
+				for (Questionaire q : questions) {
+					if (q.isSelected()) selQuestions.add(new Long(q.getQuestionId()));
+					
+				}
+				
+			} else {
+				Log.i(OhConstants.ERROR, "An unexpectd result " + result);	
+				
+			}
+		}
+		
+		
+	}
+	
 	
 	class SaveQuestionsTask extends OhAsyncTaskBase {
 		

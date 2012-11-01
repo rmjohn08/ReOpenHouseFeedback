@@ -4,17 +4,15 @@ import java.util.HashMap;
 
 import net.rmj.android.ohfeedback.dataaccess.FeedbackDao;
 import net.rmj.android.ohfeedback.model.Feedback;
+import net.rmj.android.ohfeedback.model.Questionaire;
 import android.app.Activity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Adapter;
 import android.widget.Button;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RatingBar;
-import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
 public class OpenHouseLocationFeedback extends Activity {
@@ -67,8 +65,17 @@ public class OpenHouseLocationFeedback extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				//saveFeedback();
-				collectRatings();	
+				
+				try {
+					collectRatings();
+					saveFeedback();
+					
+				} catch (Exception ex) {
+					ex.printStackTrace();
+					Toast.makeText(v.getContext(), "Error saving Feedback", Toast.LENGTH_LONG);
+					
+				}
+				
 			}
 			
 		});
@@ -90,13 +97,26 @@ public class OpenHouseLocationFeedback extends Activity {
     	ListView lv = (ListView)this.findViewById(R.id.myFeedbackQuestions);
     	
     	int chCount = lv.getChildCount();
-    	for (int i = 0; i<chCount; i++) {
+    	/* for (int i = 0; i<chCount; i++) {
     		//LinearLayout ll = (LinearLayout)lv.getChildAt(i);
     		RelativeLayout rl = (RelativeLayout)lv.getChildAt(i);
     		LinearLayout ll = (LinearLayout)rl.getChildAt(0);
+    		TextView tv = (TextView)ll.getChildAt(1);
     		RatingBar rb = (RatingBar)ll.getChildAt(2);
-    		Log.i(OhConstants.OH_TAG, "Rating Bar click listener..."+rb.getRating());
+    		Log.i(OhConstants.OH_TAG, "Text " + tv.getText() + " Rating Bar..."+rb.getRating());
+    	} */
+    	Adapter adapter = lv.getAdapter();
+    	for (int i = 0; i<adapter.getCount(); i++) {
+    		Questionaire q = (Questionaire)adapter.getItem(i);
+    		Log.i(OhConstants.OH_TAG, "Text " + q.getQuestion() + " Rating Bar..."+q.getRating());
+    		Feedback fb = new Feedback();
+    		fb.setQuestionId(q.getQuestionId());
+    		fb.setResponseNo(q.getRating());
+    		fb.setLocationId(locationId);
+    		ratingMap.put(q.getQuestionId(), fb);
+    		
     	}
+    	
     	/*
     	LinearLayout vwParentRow = (LinearLayout)vw.getParent();
         
@@ -120,15 +140,15 @@ public class OpenHouseLocationFeedback extends Activity {
      * 							the owner will receive instant feedback on open house. 
      */
     private void saveFeedback() {
+    	
     	SaveFeedbackTask task = new SaveFeedbackTask(this);
 		task.execute(new String[]{String.valueOf(OhConstants.ACTION_SAVE)});
 		
-    	
     }
     
     private void doExtraActivitySteps() {
-    	
     	Toast.makeText(this, "Feedback saved", Toast.LENGTH_LONG);
+    	this.finish();
     	//possible steps from here could be to fire up a service to
     	//send email to owner and send feedback to external service.
     	

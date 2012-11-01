@@ -26,6 +26,8 @@ public class FeedbackDao extends OpenHouseFeedbackDao {
 		allColumns.add("loc_id");
 		allColumns.add("response_text");
 		allColumns.add("response_no");
+		allColumns.add("feedback_name");
+		
 		
 	}
 	
@@ -54,7 +56,7 @@ public class FeedbackDao extends OpenHouseFeedbackDao {
 		values.put(allColumns.get(idx++),fe.getLocationId());
 		values.put(allColumns.get(idx++),fe.getResponseText());
 		values.put(allColumns.get(idx++),fe.getResponseNo());
-		
+		values.put(allColumns.get(idx++),fe.getName());
 		
 	}
 	

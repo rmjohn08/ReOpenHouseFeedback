@@ -64,6 +64,11 @@ public class TaskQuestionsToSet extends OhAsyncTaskBase {
 		
 	}
 	
+	/**
+	 * Read the questions
+	 * @param locId
+	 * @return
+	 */
 	protected String readQuestions(long locId) {
 		//Log.i(OhConstants.OH_TAG, "Unknown Action " );
 		//return "Unknown Action";
@@ -77,8 +82,6 @@ public class TaskQuestionsToSet extends OhAsyncTaskBase {
 				strResult = "No questions found.";
 				Log.i(OhConstants.OH_TAG, "No questions found, there is a problem.");
 			}
-			
-			
 		
 		}  catch(Exception ex) {
 			Log.e(OhConstants.OH_TAG, "Error testing dao");
@@ -93,6 +96,10 @@ public class TaskQuestionsToSet extends OhAsyncTaskBase {
 		return strResult;
 	}
 	
+	/**
+	 * Read All questions
+	 * @return
+	 */
 	protected String readAllQuestions() {
 		//Log.i(OhConstants.OH_TAG, "Unknown Action " );
 		//return "Unknown Action";
@@ -168,7 +175,7 @@ public class TaskQuestionsToSet extends OhAsyncTaskBase {
 	        fListView.setAdapter(fAdapter);
 	        
 	        //if (dialog.isShowing()) dialog.dismiss();
-	        Toast.makeText(context, "Please answer questions.", Toast.LENGTH_SHORT);
+	        //Toast.makeText(context, "Please answer questions.", Toast.LENGTH_SHORT);
 		
 		} else {
 		

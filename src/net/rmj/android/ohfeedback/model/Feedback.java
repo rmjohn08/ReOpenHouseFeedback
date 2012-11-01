@@ -6,6 +6,14 @@ public class Feedback {
 	private long locationId;
 	private String responseText;
 	private double responseNo;
+	private String name;
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
 	public long getFeedbackId() {
 		return feedbackId;
 	}
