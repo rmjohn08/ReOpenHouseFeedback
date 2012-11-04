@@ -79,7 +79,7 @@ public class LocationDao extends OpenHouseFeedbackDao {
 	 * add a new location record
 	 * @param qn
 	 */
-	public void addQuestion(Location lo) {
+	public void addLocation(Location lo) {
 		ContentValues values = new ContentValues();
 		setLocContentValues(values, lo,false);
 		
@@ -187,7 +187,7 @@ public class LocationDao extends OpenHouseFeedbackDao {
 		lo.setSellerEmail("r_john08@cox.net");
 		lo.setZipcode("12020");
 		
-		this.addQuestion(lo);
+		this.addLocation(lo);
 		Location l2 = this.getLocation(lo.getLocationId());
 		if (l2==null) {
 			Log.i(OhConstants.OH_TAG, "No Location found .... quitting");

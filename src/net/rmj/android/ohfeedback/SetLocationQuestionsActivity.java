@@ -100,6 +100,11 @@ public class SetLocationQuestionsActivity extends Activity {
 		return true;
 	}
 	
+	/**
+	 * Class that will take care reading questions from database
+	 * @author yrj0002
+	 *
+	 */
 	class ReadQuestionsTask extends TaskQuestionsToSet {
 		public ReadQuestionsTask(Activity ac) {
 			super(ac);
@@ -138,7 +143,11 @@ public class SetLocationQuestionsActivity extends Activity {
 		
 	}
 	
-	
+	/**
+	 * class that will take care of saving questions into database.
+	 * @author yrj0002
+	 *
+	 */
 	class SaveQuestionsTask extends OhAsyncTaskBase {
 		
 		public SaveQuestionsTask (Activity act) {

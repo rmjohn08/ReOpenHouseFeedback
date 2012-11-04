@@ -17,6 +17,14 @@ public class TaskSaveLocationDetail extends OhAsyncTaskBase {
 	
 	private Location location;
 	
+	public TaskSaveLocationDetail(Activity activity) {
+		//this.activity = activity;
+		//this.context = this.activity;
+		//dialog = new ProgressDialog(context);
+		super(activity);
+	}
+	
+	
 	public Location getLocation() {
 		return location;
 	}
@@ -25,12 +33,6 @@ public class TaskSaveLocationDetail extends OhAsyncTaskBase {
 		this.location = location;
 	}
 
-	public TaskSaveLocationDetail(Activity activity) {
-		//this.activity = activity;
-		//this.context = this.activity;
-		//dialog = new ProgressDialog(context);
-		super(activity);
-	}
 	
 	@Override
 	protected String doInBackground(String... params) {
@@ -60,7 +62,10 @@ public class TaskSaveLocationDetail extends OhAsyncTaskBase {
 		String strResult="";
 		try {
 			dao.openDatabase();
-			dao.updateLocation(location);
+			if (location.getLocationId()>0)
+				dao.updateLocation(location);
+			else 
+				dao.addLocation(location);
 			
 		
 		}  catch(Exception ex) {

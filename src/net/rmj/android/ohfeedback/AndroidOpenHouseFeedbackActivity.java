@@ -44,7 +44,7 @@ public class AndroidOpenHouseFeedbackActivity extends Activity  {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				Intent intent = new Intent(AndroidOpenHouseFeedbackActivity.this ,OpenHouseLocationFeedbackActivity.class);
+				Intent intent = new Intent(AndroidOpenHouseFeedbackActivity.this ,NewPropertyActivity.class);
 	   			startActivity(intent);
 	   			
 			}

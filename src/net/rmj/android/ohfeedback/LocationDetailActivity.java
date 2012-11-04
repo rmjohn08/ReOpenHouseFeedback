@@ -3,6 +3,7 @@ package net.rmj.android.ohfeedback;
 import net.rmj.android.ohfeedback.dataaccess.LocationDao;
 import net.rmj.android.ohfeedback.model.Location;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -10,11 +11,13 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 public class LocationDetailActivity extends Activity {
-	  long locationId =0;
-	  Location thisLocation=new Location();
+	  protected long locationId =0;
+	  protected Location thisLocation=new Location();
+	  
+	  protected Button btnFeedback;
+	  protected Button btnSetQuestion;
 	  
 	  @Override
 	  public void onCreate(Bundle savedInstanceState) {
@@ -37,62 +40,59 @@ public class LocationDetailActivity extends Activity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				saveLocationDetails();
+				saveLocationDetails((Activity)v.getContext());
 			}
 			 
 		 });
-		 Button btnFeedback = (Button)this.findViewById(R.id.btnFeedback);
-		 btnFeedback.setOnClickListener( new OnClickListener() {
-
-			@Override
-			public void onClick(View vw) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent(vw.getContext(),OpenHouseLocationFeedback.class);
-				intent.putExtra(OhConstants.LOCATION_ID_NAME, locationId);
-    			vw.getContext().startActivity(intent);
-			}
-			 
-		 });
-		 Button btnSetQuestion = (Button)this.findViewById(R.id.btnSetQuestions);
-		 btnSetQuestion.setOnClickListener( new OnClickListener() {
-
-			@Override
-			public void onClick(View vw) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent(vw.getContext(),SetLocationQuestionsActivity.class);
-				intent.putExtra(OhConstants.LOCATION_ID_NAME, locationId);
-    			vw.getContext().startActivity(intent);
-			}
-			 
-		 });
+		 
+		 this.setButtonOnClickListener();
+		 
 		 // within activity not sure should do this setLocationDetail(locId);
 	  }
 	  
-	  /**
-	   * set the location info
-	   * @param locId
-	   */
-	  private void setLocationDetail(long locId) {
-		  Location loc = findLocation(locId);
-		  if (loc==null) {
-			  Toast.makeText(this, "Location not Found", Toast.LENGTH_LONG);
-			  return;
-		  }
-		  EditText txtAddress = (EditText)this.findViewById(R.id.txtAddress);
-		  txtAddress.setText(loc.getAddress());
+	  protected void setButtonOnClickListener() {
+		  	if (btnFeedback==null) btnFeedback = (Button)this.findViewById(R.id.btnFeedback);
+			
+		  	btnFeedback.setOnClickListener( new OnClickListener() {
+
+				@Override
+				public void onClick(View vw) {
+					// TODO Auto-generated method stub
+					Intent intent = new Intent(vw.getContext(),OpenHouseLocationFeedback.class);
+					intent.putExtra(OhConstants.LOCATION_ID_NAME, locationId);
+	    			vw.getContext().startActivity(intent);
+				}
+				 
+			 });
+		
+			 if (btnSetQuestion==null) btnSetQuestion = (Button)this.findViewById(R.id.btnSetQuestions);
+			 
+			 btnSetQuestion.setOnClickListener( new OnClickListener() {
+
+				@Override
+				public void onClick(View vw) {
+					// TODO Auto-generated method stub
+					Intent intent = new Intent(vw.getContext(),SetLocationQuestionsActivity.class);
+					intent.putExtra(OhConstants.LOCATION_ID_NAME, locationId);
+	    			vw.getContext().startActivity(intent);
+				}
+				 
+			 });
+		  
 	  }
 	  
-	  private void saveLocationDetails() {
+	  
+	  protected void saveLocationDetails(Activity theActivity) {
 		  thisLocation = new Location();
 		  setFields(thisLocation);
-		  TaskSaveLocationDetail task = new TaskSaveLocationDetail(this);
+		  TaskSaveLocationDetail task = new TaskSaveLocationDetail(theActivity);
 		  task.setLocation(thisLocation);
 		  task.execute(new String[]{OhConstants.ACTION_SAVE});
 		  
 	  }
 	  
 	  
-	  private void setFields (Location loc) {
+	  protected void setFields (Location loc) {
 		  	loc.setLocationId(locationId);
 		  	loc.setAddress(((EditText)this.findViewById(R.id.txtAddress)).getText().toString());
 			loc.setCity(((EditText)this.findViewById(R.id.txtCity)).getText().toString());
