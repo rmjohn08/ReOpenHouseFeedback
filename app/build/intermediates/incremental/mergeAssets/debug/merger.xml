@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="2" >
+
+    <dataSet config="20.0.0" >
+        <source path="C:\software\android-develop\REOpenHouseFeedback\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\assets" />
+    </dataSet>
+    <dataSet config="main" >
+        <source path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\assets" >
+            <file
+                name="ohfeedback"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\assets\ohfeedback" />
+            <file
+                name="ohfeedback.db"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\assets\ohfeedback.db" />
+        </source>
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="C:\software\android-develop\REOpenHouseFeedback\app\src\debug\assets" />
+    </dataSet>
+
+</merger>

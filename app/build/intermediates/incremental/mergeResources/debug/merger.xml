@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="2" >
+
+    <dataSet config="20.0.0" >
+        <source path="C:\software\android-develop\REOpenHouseFeedback\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\res" />
+    </dataSet>
+    <dataSet config="main" >
+        <source path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res" >
+            <file
+                name="custom_button"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\drawable\custom_button.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="custom_button_2"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\drawable\custom_button_2.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="custom_button_3"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\drawable\custom_button_3.xml"
+                qualifiers=""
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\drawable-hdpi\ic_launcher.png"
+                qualifiers="hdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\drawable-ldpi\ic_launcher.png"
+                qualifiers="ldpi-v4"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\drawable-mdpi\ic_launcher.png"
+                qualifiers="mdpi-v4"
+                type="drawable" />
+            <file
+                name="ic_launcher"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\drawable-xhdpi\ic_launcher.png"
+                qualifiers="xhdpi-v4"
+                type="drawable" />
+            <file
+                name="feedback"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\layout\feedback.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="feedback_list"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\layout\feedback_list.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="location_detail"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\layout\location_detail.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="main"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\layout\main.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="questions"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\layout\questions.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="questions_list"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\layout\questions_list.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search_location"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\layout\search_location.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search_results"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\layout\search_results.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                name="search_result_list"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\layout\search_result_list.xml"
+                qualifiers=""
+                type="layout" />
+            <file
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\values\colors.xml"
+                qualifiers="" >
+                <color name="white1" >#FFFFFF
+                </color>
+                <color name="white2" >#DDDDDD
+                </color>
+                <color name="blue2" >#19FCDA
+                </color>
+                <color name="blue25" >#D9F7F2
+                </color>
+                <color name="redorange" >#C84127
+                </color>
+                <color name="cedar" >#3D2117
+                </color>
+                <color name="grey05" >#ACA899
+                </color>
+                <color name="orange4" >#F7BE45
+                </color>
+                <color name="magenta" >#67C5C2
+                </color>
+                <color name="orange5" >#F7D896
+                </color>
+                <color name="yellow2" >#F9F89D
+                </color>
+                <color name="beige" >#FEFCE8
+                </color>
+                <color name="yellow1" >#F9E60E
+                </color>
+            </file>
+            <file
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\values\strings.xml"
+                qualifiers="" >
+                <string name="strFeedback" >Feedback
+                </string>
+                <string name="strLocationLabel" >Location
+                </string>
+                <string name="strSearch" >Search
+                </string>
+                <string name="app_name" >Property Buyer Feedback
+                </string>
+                <string name="strSubmit" >Submit
+                </string>
+                <string name="strQuestion" >Questions
+                </string>
+                <string name="strOhLabelSearch" >Find Property
+                </string>
+                <string name="strViewLabel" >View
+                </string>
+                <string name="search_by" >Search by address, city
+                </string>
+                <string name="strSave" >Save
+                </string>
+                <string name="hello" >Hello World, AndroidOpenHouseFeedbackActivity!
+                </string>
+                <string name="strOhNew" >New Property
+                </string>
+            </file>
+            <file
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\values\styles.xml"
+                qualifiers="" >
+
+                <style name="button_styled_cedar" >
+                    <item name="android:textSize">
+18pt
+                    </item>
+                    <item name="android:background">
+@drawable/custom_button_3
+                    </item>
+                    <item name="android:textColor">
+@color/white1
+                    </item>
+                </style>
+
+                <style name="button_styled_redorange" >
+
+                    <!--
+        item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_marginTop">12dp</item
+                    -->
+                    <item name="android:textSize">
+18pt
+                    </item>
+                    <item name="android:textColor">
+@color/white1
+                    </item>
+                    <item name="android:background">
+@drawable/custom_button
+                    </item>
+                </style>
+
+                <style name="button_styled_magenta" >
+                    <item name="android:textSize">
+18pt
+                    </item>
+                    <item name="android:background">
+@drawable/custom_button_2
+                    </item>
+                    <item name="android:textColor">
+@color/white1
+                    </item>
+                </style>
+
+                <style name="button_styled_beige" >
+                    <item name="android:textSize">
+18pt
+                    </item>
+                    <item name="android:background">
+@drawable/custom_button_2
+                    </item>
+                    <item name="android:textColor">
+@color/blue2
+                    </item>
+                </style>
+            </file>
+            <file
+                name="searchable"
+                path="C:\software\android-develop\REOpenHouseFeedback\app\src\main\res\xml\searchable.xml"
+                qualifiers=""
+                type="xml" />
+        </source>
+        <source path="C:\software\android-develop\REOpenHouseFeedback\app\build\generated\res\rs\debug" />
+        <source path="C:\software\android-develop\REOpenHouseFeedback\app\build\generated\res\generated\debug" />
+    </dataSet>
+    <dataSet config="debug" >
+        <source path="C:\software\android-develop\REOpenHouseFeedback\app\src\debug\res" />
+    </dataSet>
+
+</merger>

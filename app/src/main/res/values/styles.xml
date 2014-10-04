@@ -1,0 +1,38 @@
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- Global Styles -->
+    <style name="button_styled_redorange" >
+        <!--  item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginBottom">4dp</item>
+        <item name="android:layout_marginLeft">4dp</item>
+        <item name="android:layout_marginTop">12dp</item -->
+        <item name="android:textSize">18pt</item>
+        <item name="android:textColor">@color/white1</item>
+        <item name="android:background">@drawable/custom_button</item>
+    </style>
+
+    <style name="button_styled_magenta" >
+        <item name="android:textSize">18pt</item>
+        <item name="android:background">@drawable/custom_button_2</item>
+        <item name="android:textColor">@color/white1</item>
+
+    </style>
+
+
+    <style name="button_styled_cedar" >
+        <item name="android:textSize">18pt</item>
+        <item name="android:background">@drawable/custom_button_3</item>
+        <item name="android:textColor">@color/white1</item>
+
+    </style>
+
+
+    <style name="button_styled_beige" >
+        <item name="android:textSize">18pt</item>
+        <item name="android:background">@drawable/custom_button_2</item>
+        <item name="android:textColor">@color/blue2</item>
+
+    </style>
+
+</resources>

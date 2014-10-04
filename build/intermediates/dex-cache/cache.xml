@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="C:\software\android-develop\REOpenHouseFeedback\app\build\intermediates\pre-dexed\debug\classes-64e7c9cfe764aa8423c9ee041280d21a5938da05.jar"
+        jar="C:\software\android-develop\REOpenHouseFeedback\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="8694693636ab36910c8100ce527c258ff3ebece0"/>
+    <item
+        dex="C:\software\android-develop\REOpenHouseFeedback\app\build\intermediates\pre-dexed\debug\internal_impl-20.0.0-ef1e5e7d63f8baec25b38fef008cc22596b2494c.jar"
+        jar="C:\software\android-develop\REOpenHouseFeedback\app\build\intermediates\exploded-aar\com.android.support\support-v4\20.0.0\libs\internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+    <item
+        dex="C:\software\android-develop\REOpenHouseFeedback\app\build\intermediates\pre-dexed\debug\support-annotations-20.0.0-dc18527326587df245010b58630f8804dc8d8856.jar"
+        jar="C:\software\android-develop\adt-bundle-windows-x86_64-20130514\sdk\extras\android\m2repository\com\android\support\support-annotations\20.0.0\support-annotations-20.0.0.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="9d9013e9ff35fc3756411e62873c363c70c638fa"/>
+    <item
+        dex="C:\software\android-develop\REOpenHouseFeedback\app\build\intermediates\pre-dexed\debug\ormlite-core-4.48-0bb8b3710a0635693a6d6c6bdca04d43e0a6523a.jar"
+        jar="C:\Users\Ronaldo\.gradle\caches\modules-2\files-2.1\com.j256.ormlite\ormlite-core\4.48\e579bd2905d0399af5029aaaf9817d5fa0ca88a5\ormlite-core-4.48.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="e579bd2905d0399af5029aaaf9817d5fa0ca88a5"/>
+    <item
+        dex="C:\software\android-develop\REOpenHouseFeedback\app\build\intermediates\pre-dexed\debug\ormlite-android-4.48-09ff3e26a3be1bf061272623da49d2bfe3f9fc2a.jar"
+        jar="C:\Users\Ronaldo\.gradle\caches\modules-2\files-2.1\com.j256.ormlite\ormlite-android\4.48\afa06f539a4026c10b247386312aa67404b80a16\ormlite-android-4.48.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="afa06f539a4026c10b247386312aa67404b80a16"/>
+
+</pre-dex-items>

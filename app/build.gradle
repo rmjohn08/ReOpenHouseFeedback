@@ -1,0 +1,34 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 20
+    buildToolsVersion "20.0.0"
+
+    defaultConfig {
+        applicationId "net.rmj.android.ohfeedback"
+        minSdkVersion 11
+        targetSdkVersion 20
+        versionName "1.0"
+    }
+
+    buildTypes {
+        release {
+            runProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+}
+
+dependencies {
+    compile 'com.android.support:support-v4:20.0.0'
+
+    // SQLite
+    compile group: 'com.j256.ormlite', name: 'ormlite-android', version: '4.48'
+
+}
+
+
