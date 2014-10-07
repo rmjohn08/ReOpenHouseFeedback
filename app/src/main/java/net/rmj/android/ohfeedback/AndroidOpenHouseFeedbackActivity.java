@@ -1,88 +1,144 @@
 package net.rmj.android.ohfeedback;
 
 import android.app.Activity;
+import android.app.ListActivity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.PopupMenu;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.PreparedQuery;
+import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.Where;
 
 import net.rmj.android.ohfeedback.dataaccess.DAOUtil;
+import net.rmj.android.ohfeedback.dataaccess.LocationDao;
+import net.rmj.android.ohfeedback.model.BaseSearchLocationActivity;
+import net.rmj.android.ohfeedback.model.Location;
 
-public class AndroidOpenHouseFeedbackActivity extends Activity  {
-	
-	//ArrayList<FeedbackQuestion> questions;
-	//FeedbackAdapter fAdapter;
-	ListView fListView;
-	boolean load = false;
-	Activity mActivity;
+import java.util.ArrayList;
+import java.util.List;
+
+public class AndroidOpenHouseFeedbackActivity extends BaseSearchLocationActivity {
+
+    private ProgressDialog dialog;
+    private List<Location> results = null;
+
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
-       
-        /* ArrayList<FeedbackQuestion> questions = new ArrayList<FeedbackQuestion>();
-        questions.add(new FeedbackQuestion("Interest",0));
-        questions.add(new FeedbackQuestion("Price",0));
-        questions.add(new FeedbackQuestion("Interior",0));
-        questions.add(new FeedbackQuestion("Exterior Look",0));
-        questions.add(new FeedbackQuestion("Paint",0));
-        questions.add(new FeedbackQuestion("Neighborhood",0));
-        questions.add(new FeedbackQuestion("Yard",0));
-        */
-        //... more questions....
+
         DAOUtil.getInstance().open(this.getApplicationContext());
-        Log.i("OHFeedback","Database should now be initialized");
+        Log.i("OHFeedback", "Database should now be initialized");
 
     	super.onCreate(savedInstanceState);
-        setContentView(R.layout.main);
-        Button bLoc = (Button)findViewById(R.id.btnLocation);
-        bLoc.setOnClickListener(new OnClickListener() {
-        		public void onClick(View v) {
-        			onSearchRequested();
-        		}
-        });
-        Button bFeedback = (Button)findViewById(R.id.btnOhNew);
-        bFeedback.setOnClickListener( new OnClickListener() {
+        //setContentView(R.layout.main);
+
+        dialog = new ProgressDialog(this);
+        dialog.show();
+
+        if (doSearch().equalsIgnoreCase(OhConstants.SUCCESS)) {
+            this.populateResultList();
+
+        }
+
+        dialog.dismiss();
+
+        //Button bFeedback = (Button)findViewById(R.id.btnOhNew);
+        /* bFeedback.setOnClickListener( new OnClickListener() {
 
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(AndroidOpenHouseFeedbackActivity.this ,NewPropertyActivity.class);
 	   			startActivity(intent);
-	   			
+
 			}
-        	
+
         });
-        /*mActivity = this;
-        
-        //this.inflate(resLayout, parent, false);
-        Button bb = (Button)findViewById(R.id.btnSubmit);
-        bb.setOnClickListener( new Button.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				if (!load) {
-					long locationId = 1;
-					ReadLocationQuestions task = new ReadLocationQuestions(mActivity);
-					task.execute(new String[]{String.valueOf(locationId)});
-				}
-			}
-        	
-        }); */
-        
-        /*
-        fListView = (ListView)this.findViewById(R.id.myFeedbackQuestions);
-        fAdapter = new FeedbackAdapter(this,R.layout.feedback_list,questions);
-        fListView.setAdapter(fAdapter);
         */
-        //fListView.setI
-        
-        //ListView v = (ListView)this.findViewById(R.id.myFeedbackQuestions);
 
-       
     }
+
+    //this is for the action bar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_search:
+                onSearchRequested();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_menu_actions, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    /**
+     * performs search
+     * @return
+     */
+    protected String doSearch() {
+        DAOUtil dao = DAOUtil.getInstance();
+        try {
+            Dao<Location, Long> locDao = dao.getDAO(Location.class);
+            QueryBuilder<Location, Long> query = locDao.queryBuilder();
+
+            query.orderBy("address", false);
+
+            PreparedQuery<Location> preparedQuery = query.prepare();
+            results = locDao.query(preparedQuery);
+            if (results==null || results.size()<=0){
+                results = new ArrayList<Location>();
+                Location loc = new Location();
+                loc.setAddress("No locations found");
+                loc.setLocationId(0);
+                results.add(loc);
+            }
+
+        } catch (Exception ex){
+            ex.printStackTrace();
+            return OhConstants.FAILED;
+        }
+        return OhConstants.SUCCESS;
+    }
+
+
+    /**
+     * populates the result list
+     */
+    protected void populateResultList() {
+
+        ListView fListView = this.getListView();
+
+        if (fListView!=null) {
+            SearchLocationAdapter fAdapter = new SearchLocationAdapter(this,R.layout.search_result_list, (ArrayList<Location>)results);
+            fListView.setAdapter(fAdapter);
+        } else {
+            Toast.makeText(this, "Problem with List View.", Toast.LENGTH_SHORT);
+        }
+
+    }
+
     
 }

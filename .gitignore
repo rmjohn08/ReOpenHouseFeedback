@@ -1,0 +1,10 @@
+out/
+gen/
+*.iml
+local.properties
+.gradle/*
+.gradle/1.12/
+gradle/*
+build
+build/app/*
+.metadata

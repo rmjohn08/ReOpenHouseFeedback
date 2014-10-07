@@ -62,11 +62,13 @@ public class TaskSaveLocationDetail extends OhAsyncTaskBase {
 		String strResult="";
 		try {
 			dao.openDatabase();
-			if (location.getLocationId()>0)
-				dao.updateLocation(location);
-			else 
-				dao.addLocation(location);
-			
+			if (location.getLocationId()>0) {
+                // dao.updateLocation(location);
+                Log.i(OhConstants.OH_TAG, "Location saved...");
+            } else {
+                // dao.addLocation(location);
+                Log.i(OhConstants.OH_TAG,"location added");
+            }
 		
 		}  catch(Exception ex) {
 			Log.e(OhConstants.OH_TAG, "Error testing dao");

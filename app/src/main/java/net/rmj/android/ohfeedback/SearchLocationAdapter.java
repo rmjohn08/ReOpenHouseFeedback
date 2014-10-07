@@ -11,6 +11,7 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 public class SearchLocationAdapter extends ArrayAdapter<Location>{
@@ -41,34 +42,20 @@ public class SearchLocationAdapter extends ArrayAdapter<Location>{
             // from here handle click on item
             row.setClickable(true);
             row.setFocusable(true);
-            
-            /*row.setOnClickListener(new OnClickListener() {
-
-    			@Override
-    			public void onClick(View v) {
-    				// TODO Auto-generated method stub
-    				// TODO Auto-generated method stub
-    				//TestDaoUtil.testQuestionDao(v.getContext());
-    				//TestDaoUtil.testLocationDao(v.getContext());
-    				TestDaoUtil.testFeedbackDao(v.getContext());
-    			}
-
-            }); */
-            // end click on item
 
         }
 
         Location item = locations.get(position); // Produce a row for each Question.
         if(item != null)
         {
-            // Find our widgets and populate them with the Team data.
             TextView myQuestion = (TextView) row.findViewById(R.id.resultText);
             //RatingBar myRating = (RatingBar)row.findViewById(R.id.ratingBar1);
             if(myQuestion != null)
                 myQuestion.setText(item.getAddress());
+                myQuestion.setTag(item.getId());
             
             //rating).setText("Wins: " + String.valueOf(item.getTeamWins()));
-            Button btnView = (Button) row.findViewById(R.id.btnLocDetail);
+            /* Button btnView = (Button) row.findViewById(R.id.btnLocDetail);
             final long locId=item.getId();
             btnView.setOnClickListener(new OnClickListener() {
             		@Override
@@ -85,7 +72,9 @@ public class SearchLocationAdapter extends ArrayAdapter<Location>{
             if (item.getId()<=0){
                 btnView.setVisibility(View.INVISIBLE);
             }
-            
+            */
+
+
         }
         return row;
     }

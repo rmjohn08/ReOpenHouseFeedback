@@ -9,20 +9,30 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
-        android:orientation="vertical" >
+        android:orientation="horizontal" >
          <TextView
             android:id="@+id/resultText"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
+             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
             android:textSize="26dip" android:text="Question"/>
 
-         <Button
+        <ImageButton
+            android:id="@+id/imageMenu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_overflow"
+            android:contentDescription="additional options..."
+            android:onClick="showPopup"
+            />
+
+         <!-- Button
              android:id="@+id/btnLocDetail"
              style="?android:attr/buttonStyleSmall"
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:text="@string/strViewLabel" />
+             android:text="@string/strViewLabel" -->
         
     </LinearLayout>
    
