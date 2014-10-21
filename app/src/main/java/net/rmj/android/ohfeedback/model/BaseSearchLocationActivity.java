@@ -2,6 +2,7 @@ package net.rmj.android.ohfeedback.model;
 
 import android.app.ListActivity;
 import android.content.Intent;
+import android.support.v4.app.FragmentActivity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +18,7 @@ import net.rmj.android.ohfeedback.R;
 /**
  * Created by Ronaldo on 10/7/2014.
  */
-public abstract class BaseSearchLocationActivity extends ListActivity implements PopupMenu.OnMenuItemClickListener {
+public abstract class BaseSearchLocationActivity extends FragmentActivity implements PopupMenu.OnMenuItemClickListener {
 
     protected long locationId;
 

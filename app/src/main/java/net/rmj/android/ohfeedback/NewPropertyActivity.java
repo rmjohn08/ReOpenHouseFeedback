@@ -32,7 +32,7 @@ public class NewPropertyActivity extends LocationDetailActivity {
 	}
 	
 	private void setButtonVisibility(boolean visible) {
-		
+		/*
 		if (btnFeedback==null)  btnFeedback = (Button)this.findViewById(R.id.btnFeedback);
 		if (btnSetQuestion==null) btnSetQuestion = (Button)this.findViewById(R.id.btnSetQuestions);
 		
@@ -45,6 +45,7 @@ public class NewPropertyActivity extends LocationDetailActivity {
 	    	this.btnSetQuestion.setVisibility(View.INVISIBLE);
 	    	
 		}
+		*/
 	}
 	
 	private void resetScreen() {

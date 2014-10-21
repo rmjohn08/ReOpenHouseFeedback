@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import net.rmj.android.ohfeedback.dataaccess.DAOUtil;
 import net.rmj.android.ohfeedback.dataaccess.QuestionsFeedbackDao;
+import net.rmj.android.ohfeedback.model.BaseLocationDetailActivity;
 import net.rmj.android.ohfeedback.model.Location;
 import net.rmj.android.ohfeedback.model.LocationQuestion;
 import net.rmj.android.ohfeedback.model.Questionaire;
@@ -25,7 +26,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.DeleteBuilder;
 import com.j256.ormlite.support.DatabaseConnection;
 
-public class SetLocationQuestionsActivity extends Activity {
+public class SetLocationQuestionsActivity extends BaseLocationDetailActivity {
 	long locationId =0;
 	protected ArrayList<Long> selQuestions=new ArrayList<Long>();
 	

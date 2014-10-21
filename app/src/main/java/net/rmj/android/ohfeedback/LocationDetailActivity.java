@@ -5,10 +5,10 @@ import net.rmj.android.ohfeedback.dataaccess.LocationDao;
 import net.rmj.android.ohfeedback.model.BaseLocationDetailActivity;
 import net.rmj.android.ohfeedback.model.Location;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -52,12 +52,12 @@ public class LocationDetailActivity extends BaseLocationDetailActivity {
 		 });
 		 
 		 this.setButtonsOnClickListener();
-
-          getActionBar().setDisplayHomeAsUpEnabled(true);
+         getActionBar().setDisplayHomeAsUpEnabled(true);
 
 	  }
 	  
 	  protected void setButtonsOnClickListener() {
+          /*
 		  	if (btnFeedback==null) btnFeedback = (Button)this.findViewById(R.id.btnFeedback);
 			
 		  	btnFeedback.setOnClickListener( new OnClickListener() {
@@ -85,9 +85,10 @@ public class LocationDetailActivity extends BaseLocationDetailActivity {
 				}
 				 
 			 });
+			 */
 		  
 	  }
-	  
+
 	  
 	  protected void saveLocationDetails(Activity theActivity) {
 		  thisLocation = new Location();
@@ -148,6 +149,35 @@ public class LocationDetailActivity extends BaseLocationDetailActivity {
 		   
 		   return location;
 	  }
+
+    //this is for the action bar
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle presses on the action bar items
+        switch (item.getItemId()) {
+            case R.id.action_do_feedback:
+                //onSearchRequested();
+                return true;
+            case R.id.action_set_questions:
+                //performLocationSearch();
+                return true;
+            case android.R.id.home:
+                onBackPressed();
+                return true;
+
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.location_detail_menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
 
 }

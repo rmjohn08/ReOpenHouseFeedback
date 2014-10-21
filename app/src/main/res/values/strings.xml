@@ -7,6 +7,7 @@
     <string name="strLocationLabel">Location</string>
     <string name="strSearch">Search</string>
     <string name="strRefresh">Refresh</string>
+
     <string name="strOhLabelSearch">Find Property</string>
     <string name="strOhNew">New Property</string>
     <string name="strViewLabel">View</string>
@@ -15,5 +16,15 @@
     <string name="strQuestion">Questions</string>
     <string name="search_by">Search by address, city</string>
 
+    <string name="drawer_open">Open Drawer</string>
+    <string name="drawer_close">Close Drawer</string>
+
+
+    <string-array name="drawer_options">
+        <item >New Location</item>
+        <item >Questions</item>
+        <item >Settings</item>
+        <item >Exit</item>
+    </string-array>
 
 </resources>
