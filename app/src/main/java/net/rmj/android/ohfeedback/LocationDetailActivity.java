@@ -2,12 +2,14 @@ package net.rmj.android.ohfeedback;
 
 import net.rmj.android.ohfeedback.dataaccess.DAOUtil;
 import net.rmj.android.ohfeedback.dataaccess.LocationDao;
+import net.rmj.android.ohfeedback.model.BaseLocationDetailActivity;
 import net.rmj.android.ohfeedback.model.Location;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -16,7 +18,7 @@ import android.widget.Toast;
 
 import com.j256.ormlite.dao.Dao;
 
-public class LocationDetailActivity extends Activity {
+public class LocationDetailActivity extends BaseLocationDetailActivity {
 	  protected long locationId =0;
 	  protected Location thisLocation=new Location();
 	  
@@ -50,8 +52,9 @@ public class LocationDetailActivity extends Activity {
 		 });
 		 
 		 this.setButtonsOnClickListener();
-		 
-		 // within activity not sure should do this setLocationDetail(locId);
+
+          getActionBar().setDisplayHomeAsUpEnabled(true);
+
 	  }
 	  
 	  protected void setButtonsOnClickListener() {
@@ -91,6 +94,7 @@ public class LocationDetailActivity extends Activity {
 		  setFields(thisLocation);
           try {
               Dao<Location, Long> dao = DAOUtil.getInstance().getDAO(Location.class);
+              //dao.update(thisLocation);
               dao.createOrUpdate(thisLocation);
 
           } catch(Exception ex){
@@ -108,6 +112,7 @@ public class LocationDetailActivity extends Activity {
 
 	  protected void setFields (Location loc) {
 		  	loc.setLocationId(locationId);
+            loc.setId(locationId);
 		  	loc.setAddress(((EditText)this.findViewById(R.id.txtAddress)).getText().toString());
 			loc.setCity(((EditText)this.findViewById(R.id.txtCity)).getText().toString());
 			loc.setState(((EditText)this.findViewById(R.id.txtState)).getText().toString());
@@ -143,5 +148,6 @@ public class LocationDetailActivity extends Activity {
 		   
 		   return location;
 	  }
-	
+
+
 }

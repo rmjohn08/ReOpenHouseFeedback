@@ -1,5 +1,13 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- texts -->
+    <style name="font_results" >
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white1</item>
+        <!-- android:textSize="26dip" -->
+
+    </style>
+
     <!-- Global Styles -->
     <style name="button_styled_redorange" >
         <!--  item name="android:layout_width">wrap_content</item>

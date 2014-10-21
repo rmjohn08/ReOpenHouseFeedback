@@ -16,7 +16,8 @@
              android:layout_weight="1"
             android:layout_height="wrap_content"
             android:textColor="#FFFFFF"
-            android:textSize="26dip" android:text="Question"/>
+            android:text="Question"
+            style="@style/font_results"/>
 
         <ImageButton
             android:id="@+id/imageMenu"

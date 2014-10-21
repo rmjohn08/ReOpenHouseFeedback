@@ -6,6 +6,7 @@ import java.util.List;
 
 import net.rmj.android.ohfeedback.dataaccess.DAOUtil;
 import net.rmj.android.ohfeedback.dataaccess.FeedbackDao;
+import net.rmj.android.ohfeedback.model.BaseLocationDetailActivity;
 import net.rmj.android.ohfeedback.model.Feedback;
 import net.rmj.android.ohfeedback.model.Location;
 import net.rmj.android.ohfeedback.model.LocationQuestion;
@@ -22,7 +23,7 @@ import android.widget.Toast;
 
 import com.j256.ormlite.dao.Dao;
 
-public class OpenHouseLocationFeedback extends Activity {
+public class OpenHouseLocationFeedback extends BaseLocationDetailActivity {
 	
 	ListView fListView;
 	//ScrollView fListView;
@@ -61,7 +62,7 @@ public class OpenHouseLocationFeedback extends Activity {
         fListView = (ListView)this.findViewById(R.id.myFeedbackQuestions);
     	//fListView = (ScrollView)this.findViewById(R.id.myFeedbackQuestionsRework);
         
-        locationId = getIntent().getLongExtra(OhConstants.LOCATION_ID_NAME, 0);;
+        locationId = getIntent().getLongExtra(OhConstants.LOCATION_ID_NAME, 0);
         /*
 		TaskReadLocationQuestions task = new TaskReadLocationQuestions(this);
 		task.execute(new String[]{String.valueOf(locationId)});
