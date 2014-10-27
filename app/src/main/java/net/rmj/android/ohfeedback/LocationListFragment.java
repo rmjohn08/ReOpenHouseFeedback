@@ -8,7 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 
-import net.rmj.android.ohfeedback.dummy.DummyContent;
 import net.rmj.android.ohfeedback.model.Location;
 
 import java.util.ArrayList;

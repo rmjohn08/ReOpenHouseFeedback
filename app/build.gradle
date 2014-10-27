@@ -25,6 +25,7 @@ android {
 
 dependencies {
     compile 'com.android.support:support-v4:20.0.0'
+    compile "com.android.support:recyclerview-v7:21.+"
 
     // SQLite
     compile group: 'com.j256.ormlite', name: 'ormlite-android', version: '4.48'

@@ -7,6 +7,8 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
@@ -14,6 +16,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,7 +33,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class AndroidOpenHouseFeedbackActivity extends BaseSearchLocationActivity
-    implements LocationListFragment.OnFragmentInteractionListener
+    implements LocationListFragment.OnFragmentInteractionListener, DrawerOptionsAdapter.OnItemClickListener
     {
 
     private ProgressDialog dialog;
@@ -38,7 +41,7 @@ public class AndroidOpenHouseFeedbackActivity extends BaseSearchLocationActivity
 
     private DrawerLayout mDrawyerLayout;
     private String[] drawerOptions;
-    private ListView mDrawerList;
+    private RecyclerView mDrawerList;
     private ActionBarDrawerToggle mDrawerToggle;
     private CharSequence title;
 
@@ -71,13 +74,18 @@ public class AndroidOpenHouseFeedbackActivity extends BaseSearchLocationActivity
         Log.i("PlanetSizes", "Planet array:"+drawerOptions.length);
 
         mDrawyerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
-        mDrawerList = (ListView)findViewById(R.id.left_drawer);
+        mDrawerList = (RecyclerView)findViewById(R.id.left_drawer);
 
-        mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-                R.layout.drawer_list_item, drawerOptions));
+        // old way mDrawerList.setAdapter(new ArrayAdapter<String>(this,
+        //        R.layout.drawer_list_item, drawerOptions));
+
+       // using ViewHolder pattern
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        mDrawerList.setLayoutManager(layoutManager);
+        mDrawerList.setAdapter(new DrawerOptionsAdapter(drawerOptions, this));
 
         // click events on the drawer list
-        mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        //mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
 
         // actions when drawer opens or closes
         mDrawerToggle = new ActionBarDrawerToggle(this,
@@ -162,8 +170,10 @@ public class AndroidOpenHouseFeedbackActivity extends BaseSearchLocationActivity
         getMenuInflater().inflate(R.menu.main_menu_actions, menu);
         return super.onCreateOptionsMenu(menu);
 
-
     }
+
+    @Override
+    public void onClick(View view, int position) { selectItem(position); }
 
     /* original code
     @Override
@@ -205,6 +215,8 @@ public class AndroidOpenHouseFeedbackActivity extends BaseSearchLocationActivity
     /* here you can swap fragments in the main content view */
     private void selectItem(int position)
     {
+
+        Toast.makeText(this,"Selected "+position,Toast.LENGTH_SHORT).show();
 
         mDrawyerLayout.closeDrawer(mDrawerList);
 
