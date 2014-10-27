@@ -5,18 +5,16 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
-import android.support.v4.app.ActionBarDrawerToggle;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -32,6 +30,9 @@ import net.rmj.android.ohfeedback.model.Location;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * changed class to now use the appcompat-v1:21 support library for Android L.  
+ */
 public class AndroidOpenHouseFeedbackActivity extends BaseSearchLocationActivity
     implements LocationListFragment.OnFragmentInteractionListener, DrawerOptionsAdapter.OnItemClickListener
     {
@@ -42,8 +43,9 @@ public class AndroidOpenHouseFeedbackActivity extends BaseSearchLocationActivity
     private DrawerLayout mDrawyerLayout;
     private String[] drawerOptions;
     private RecyclerView mDrawerList;
-    private ActionBarDrawerToggle mDrawerToggle;
+    //private ActionBarDrawerToggle mDrawerToggle;
     private CharSequence title;
+    private Toolbar toolbar;
 
     // the search query
     String query = null;
@@ -57,6 +59,14 @@ public class AndroidOpenHouseFeedbackActivity extends BaseSearchLocationActivity
 
     	super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
+        if (toolbar != null) {
+            setSupportActionBar(toolbar);
+            toolbar.setNavigationIcon(R.drawable.ic_drawer);
+            toolbar.setLogo(R.drawable.ic_launcher);
+
+        }
 
         Intent intent = getIntent();
         //setContentView(R.layout.search_results);
@@ -76,45 +86,15 @@ public class AndroidOpenHouseFeedbackActivity extends BaseSearchLocationActivity
         mDrawyerLayout = (DrawerLayout)findViewById(R.id.drawer_layout);
         mDrawerList = (RecyclerView)findViewById(R.id.left_drawer);
 
-        // old way mDrawerList.setAdapter(new ArrayAdapter<String>(this,
-        //        R.layout.drawer_list_item, drawerOptions));
-
        // using ViewHolder pattern
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         mDrawerList.setLayoutManager(layoutManager);
         mDrawerList.setAdapter(new DrawerOptionsAdapter(drawerOptions, this));
 
-        // click events on the drawer list
-        //mDrawerList.setOnItemClickListener(new DrawerItemClickListener());
+        mDrawerList.setHasFixedSize(true);
+        mDrawerList.setLayoutManager(new LinearLayoutManager(this));
 
-        // actions when drawer opens or closes
-        mDrawerToggle = new ActionBarDrawerToggle(this,
-                mDrawyerLayout,
-                R.drawable.ic_drawer,
-                R.string.drawer_open,
-                R.string.drawer_close) {
-
-            public void onDrawerClosed(View view){
-                getActionBar().setTitle(title);
-
-            }
-
-            public void onDrawerOpened(View drawerView) {
-
-                getActionBar().setTitle("Open Drawer");
-                View cf = getCurrentFocus();
-                if (cf!=null) {
-                    cf.clearFocus();
-                }
-            }
-        };
-
-        mDrawyerLayout.setDrawerListener(mDrawerToggle);
-
-        getActionBar().setDisplayHomeAsUpEnabled(true);
-        //getActionBar().setHomeButtonEnabled(true);
-
-        //end drawer stuff
+        //end v21 drawer stuff
 
     }
 
@@ -155,13 +135,13 @@ public class AndroidOpenHouseFeedbackActivity extends BaseSearchLocationActivity
     protected void onPostCreate(Bundle savedInstance) {
 
         super.onPostCreate(savedInstance);
-        mDrawerToggle.syncState();
+        //mDrawerToggle.syncState();
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        mDrawerToggle.onConfigurationChanged(newConfig);
+        //mDrawerToggle.onConfigurationChanged(newConfig);
     }
 
     @Override
@@ -194,11 +174,12 @@ public class AndroidOpenHouseFeedbackActivity extends BaseSearchLocationActivity
             return true;
         }
         */
-        if (mDrawerToggle.onOptionsItemSelected(item)){
-            return true;
-        }
+
 
         switch (item.getItemId()) {
+            case android.R.id.home:
+                mDrawyerLayout.openDrawer(mDrawerList);
+                return false;
             case R.id.action_search:
                 onSearchRequested();
                 return true;

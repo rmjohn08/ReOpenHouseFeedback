@@ -2,23 +2,23 @@ package net.rmj.android.ohfeedback.model;
 
 import android.app.ListActivity;
 import android.content.Intent;
-import android.support.v4.app.FragmentActivity;
+import android.support.v7.app.ActionBarActivity;
+//import android.support.v4.app.FragmentActivity;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
-import android.widget.Toast;
-
 import net.rmj.android.ohfeedback.LocationDetailActivity;
 import net.rmj.android.ohfeedback.OhConstants;
 import net.rmj.android.ohfeedback.R;
 
+
 /**
  * Created by Ronaldo on 10/7/2014.
  */
-public abstract class BaseSearchLocationActivity extends FragmentActivity implements PopupMenu.OnMenuItemClickListener {
+public abstract class BaseSearchLocationActivity extends ActionBarActivity implements PopupMenu.OnMenuItemClickListener {
 
     protected long locationId;
 
