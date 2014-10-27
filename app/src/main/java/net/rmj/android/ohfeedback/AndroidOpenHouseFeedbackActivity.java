@@ -31,7 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * changed class to now use the appcompat-v1:21 support library for Android L.  
+ * changed class to now use the appcompat-v1:21 support library for Android L.
  */
 public class AndroidOpenHouseFeedbackActivity extends BaseSearchLocationActivity
     implements LocationListFragment.OnFragmentInteractionListener, DrawerOptionsAdapter.OnItemClickListener
