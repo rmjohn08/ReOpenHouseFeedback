@@ -3,10 +3,24 @@
     <style name="AppTheme" parent="AppTheme.Base"/>
 
     <style name="AppTheme.Base" parent="Theme.AppCompat">
-        <!-- item name="colorPrimary">@color/material_blue_500</item>
-        <item name="colorPrimaryDark">@color/material_blue_700</item>
-        <item name="colorAccent">@color/material_green_A200</item -->
+        <item name="colorPrimary">@color/material_500</item>
+        <item name="colorPrimaryDark">@color/material_700</item>
+        <item name="colorAccent">@color/material_A200</item>
         <item name="android:windowNoTitle">true</item>
         <item name="windowActionBar">false</item>
+
+        <item name="android:popupMenuStyle">@style/MyApp.PopupMenu</item>
+
     </style>
+
+    <style name="MyApp.PopupMenu" parent="android:Widget.Holo.Light.ListPopupWindow">
+        <item name="android:popupBackground">@color/material_300</item>
+    </style>
+
+    <!-- Bonus: if you want to style whole Action Bar, not just the menu -->
+    <style name="MyApp.ActionBar" parent="android:Widget.Holo.Light.ActionBar.Solid">
+        <!-- Blue background color & black bottom border -->
+        <item name="android:background">@color/material_A200</item>
+    </style>
+
 </resources>
