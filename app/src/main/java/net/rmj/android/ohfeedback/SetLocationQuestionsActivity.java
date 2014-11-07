@@ -32,9 +32,15 @@ public class SetLocationQuestionsActivity extends BaseLocationDetailActivity {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
 		this.setContentView(R.layout.questions);
-		locationId = getIntent().getLongExtra(OhConstants.LOCATION_ID_NAME, 0);
+        super.onCreate(savedInstanceState);
+
+        if (getToolBar()!=null) {
+            getToolBar().setNavigationIcon(R.drawable.ic_action_back);
+
+        }
+
+        locationId = getIntent().getLongExtra(OhConstants.LOCATION_ID_NAME, 0);
 		
 		//TaskQuestionsToSet task = new TaskQuestionsToSet(this);
 		//task.execute(new String[]{OhConstants.ACTION_READALL,String.valueOf(locationId)});
@@ -46,7 +52,11 @@ public class SetLocationQuestionsActivity extends BaseLocationDetailActivity {
 			@Override
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
-				saveQuestionsChoices();
+				if (saveQuestionsChoices()) {
+                    Toast.makeText(v.getContext(), "Questions saved",Toast.LENGTH_SHORT).show();
+                    endActivity();
+                }
+
 			}
 			
 		});

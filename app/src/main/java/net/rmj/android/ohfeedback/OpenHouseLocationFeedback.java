@@ -32,8 +32,9 @@ public class OpenHouseLocationFeedback extends BaseLocationDetailActivity {
 	
 	/** Called when the activity is first created. */
    public void onCreateOLD(Bundle savedInstanceState) {
-    	super.onCreate(savedInstanceState);
-    	setContentView(R.layout.feedback);
+       setContentView(R.layout.feedback);
+       super.onCreate(savedInstanceState);
+
         //fListView = (ScrollView)this.findViewById(R.id.myFeedbackQuestions); 
     	fListView = (ListView)this.findViewById(R.id.myFeedbackQuestions);
         
@@ -57,8 +58,13 @@ public class OpenHouseLocationFeedback extends BaseLocationDetailActivity {
     
 	@Override
     public void onCreate(Bundle savedInstanceState) {
-    	super.onCreate(savedInstanceState);
     	setContentView(R.layout.feedback);
+        super.onCreate(savedInstanceState);
+
+        if (getToolBar()!=null) {
+            getToolBar().setNavigationIcon(R.drawable.ic_action_back);
+
+        }
         fListView = (ListView)this.findViewById(R.id.myFeedbackQuestions);
     	//fListView = (ScrollView)this.findViewById(R.id.myFeedbackQuestionsRework);
         

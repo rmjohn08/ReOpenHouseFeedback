@@ -5,6 +5,7 @@ import net.rmj.android.ohfeedback.dataaccess.LocationDao;
 import net.rmj.android.ohfeedback.model.BaseLocationDetailActivity;
 import net.rmj.android.ohfeedback.model.Location;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -161,10 +162,17 @@ public class LocationDetailActivity extends BaseLocationDetailActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.action_do_feedback:
-                //onSearchRequested();
+                Log.i(OhConstants.OH_TAG,"Open house Feedback");
+                Intent intent = new Intent(this,OpenHouseLocationFeedback.class);
+                intent.putExtra(OhConstants.LOCATION_ID_NAME,locationId );
+                this.startActivity(intent);
+
                 return true;
             case R.id.action_set_questions:
-                //performLocationSearch();
+                Log.i(OhConstants.OH_TAG,"Location Questions");
+                Intent intentQn = new Intent(this,SetLocationQuestionsActivity.class);
+                intentQn.putExtra(OhConstants.LOCATION_ID_NAME,locationId);
+                this.startActivity(intentQn);
                 return true;
             case android.R.id.home:
                 onBackPressed();
