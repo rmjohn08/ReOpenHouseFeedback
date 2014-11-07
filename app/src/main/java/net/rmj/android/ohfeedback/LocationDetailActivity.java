@@ -27,10 +27,15 @@ public class LocationDetailActivity extends BaseLocationDetailActivity {
 	  
 	  @Override
 	  public void onCreate(Bundle savedInstanceState) {
-		 super.onCreate(savedInstanceState);
-		 
-		 this.setContentView(R.layout.location_detail);
+         this.setContentView(R.layout.location_detail);
+         super.onCreate(savedInstanceState);
+
 		 locationId = getIntent().getLongExtra(OhConstants.LOCATION_ID_NAME, 0);
+
+         if (getToolBar()!=null) {
+             getToolBar().setNavigationIcon(R.drawable.ic_action_back);
+
+         }
 		 
 		 try {
 			 TaskReadLocationDetail task = new TaskReadLocationDetail(this);
@@ -52,7 +57,7 @@ public class LocationDetailActivity extends BaseLocationDetailActivity {
 		 });
 		 
 		 this.setButtonsOnClickListener();
-         getActionBar().setDisplayHomeAsUpEnabled(true);
+         //getActionBar().setDisplayHomeAsUpEnabled(true);
 
 	  }
 	  
@@ -85,7 +90,7 @@ public class LocationDetailActivity extends BaseLocationDetailActivity {
 				}
 				 
 			 });
-			 */
+            */
 		  
 	  }
 
